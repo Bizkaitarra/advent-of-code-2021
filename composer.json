@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {"AOC\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Api\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
