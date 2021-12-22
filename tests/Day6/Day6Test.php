@@ -2,7 +2,6 @@
 
 namespace Api\Tests\Day6;
 
-use AOC\Day6\Aquarius;
 use AOC\Day6\AquariusFunctional;
 use PHPUnit\Framework\TestCase;
 
