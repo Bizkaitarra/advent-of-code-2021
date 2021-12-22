@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Day1;
+namespace Api\Tests\Day1;
 
 use AOC\Day1\Day1;
 use PHPUnit\Framework\TestCase;

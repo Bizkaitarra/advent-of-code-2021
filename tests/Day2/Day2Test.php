@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Day2;
+namespace Api\Tests\Day2;
 
 use AOC\Day1\Day1;
 use AOC\Day2\Day2;

@@ -28,10 +28,15 @@ class Day3
                 if (!array_key_exists($key, $binaryValues) || !$binaryValues[$key] instanceof BinaryPosition) {
                    $binaryValues[$key] = new BinaryPosition();
                 }
-                $binaryValues[$key]->addBinaryNumber($bit);
+                $binaryValues[$key]->addBinaryNumber($bit, $binaryValue);
             }
         }
         return $binaryValues;
+    }
+
+    public function getLifeSupportRating(): int
+    {
+        return $this->getOxygenGeneratorRating() * $this->getCO2ScrubberRating();
     }
 
     private function getGamma(array $binaryValues): int
@@ -52,6 +57,44 @@ class Day3
             $binaryNumber.= $binaryPosition->getLessCommonDigit();
         }
         return bindec($binaryNumber);
+    }
+
+    private function getOxygenGeneratorRating(): int
+    {
+        $nextValues = null;
+        for ($position = 0; $position < strlen($this->binaryValues[0]);$position++) {
+            $binaryPosition = new BinaryPosition();
+            if ($nextValues === null) {
+                $nextValues = $this->binaryValues;
+            }
+            foreach ($nextValues as $binaryValue) {
+                $binaryPosition->addBinaryNumber(substr($binaryValue, $position, 1), $binaryValue);
+            }
+            $nextValues = $binaryPosition->getMostCommonDigitValues();
+            if (count($nextValues) === 1) {
+                return bindec($nextValues[0]);
+            }
+        }
+        return bindec($nextValues[0]);
+    }
+
+    private function getCO2ScrubberRating(): int
+    {
+        $nextValues = null;
+        for ($position = 0; $position < strlen($this->binaryValues[0]);$position++) {
+            $binaryPosition = new BinaryPosition();
+            if ($nextValues === null) {
+                $nextValues = $this->binaryValues;
+            }
+            foreach ($nextValues as $binaryValue) {
+                $binaryPosition->addBinaryNumber(substr($binaryValue, $position, 1), $binaryValue);
+            }
+            $nextValues = $binaryPosition->getLessCommonDigitValues();
+            if (count($nextValues) === 1) {
+                return bindec($nextValues[0]);
+            }
+        }
+        return bindec($nextValues[0]);
     }
 
 

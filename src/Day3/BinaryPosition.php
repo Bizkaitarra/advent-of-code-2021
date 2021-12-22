@@ -4,26 +4,20 @@ namespace AOC\Day3;
 
 class BinaryPosition
 {
-    private int $ones;
-    private int $zeros;
+    private array $ones = [];
+    private array $zeros = [];
 
-    public function __construct()
-    {
-        $this->ones = 0;
-        $this->zeros = 0;
-    }
-
-    public function addBinaryNumber(string $number) {
-        if ($number === '0') {
-            $this->zeros++;
+    public function addBinaryNumber(string $digit, string $number) {
+        if ($digit === '0') {
+            $this->zeros[] = $number;
         } else {
-            $this->ones++;
+            $this->ones[] = $number;
         }
     }
 
     public function getMostCommonDigit(): int
     {
-        if ($this->zeros > $this->ones) {
+        if (count($this->zeros) > count($this->ones)) {
             return 0;
         }
         return 1;
@@ -31,9 +25,25 @@ class BinaryPosition
 
     public function getLessCommonDigit(): int
     {
-        if ($this->zeros > $this->ones) {
+        if (count($this->zeros) > count($this->ones)) {
             return 1;
         }
         return 0;
+    }
+
+    public function getMostCommonDigitValues(): array
+    {
+        if ($this->getMostCommonDigit() === 0) {
+            return $this->zeros;
+        }
+        return $this->ones;
+    }
+
+    public function getLessCommonDigitValues(): array
+    {
+        if ($this->getLessCommonDigit() === 0) {
+            return $this->zeros;
+        }
+        return $this->ones;
     }
 }
