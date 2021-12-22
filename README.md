@@ -10,7 +10,7 @@ the test making sure that the value is the one is expected.
 
 ## Some notes about solutions
 
-# Day 6
+### Day 6
 
 I always try to make the solution using object oriented solution with clean code. In this case,
 the solution must be more efficient so I made a functional solution with less cost.
